@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>پارس‌نگار — جعبه‌ابزار متن فارسی</title>
+    <meta
+      name="description"
+      content="پارس‌نگار یک جعبه‌ابزار متن‌باز برای متن فارسی است: یکسان‌سازی نویسه‌های عربی، حذف اعراب، نیم‌فاصله، ارقام، نشانه‌گذاری و آمار متن. کد تحت لایسنس MIT."
+    />
+    <meta name="theme-color" content="#0f1115" />
+    <meta property="og:title" content="پارس‌نگار — جعبه‌ابزار متن‌باز فارسی" />
+    <meta
+      property="og:description"
+      content="نرمال‌سازی متن فارسی در مرورگر، بدون سرور و بدون وابستگی. کتابخانه جاوااسکریپت متن‌باز با لایسنس MIT."
+    />
+    <meta property="og:image" content="/og-image.svg" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#tool">پرش به ابزار</a>
+
+    <header class="site-header">
+      <div class="shell header-inner">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true">پ‌ن</span>
+          <div>
+            <p class="brand-name">پارس‌نگار</p>
+            <p class="brand-sub">جعبه‌ابزار متن فارسی</p>
+          </div>
+        </div>
+        <nav class="header-nav" aria-label="بخش‌ها">
+          <a href="#tool">ابزار</a>
+          <a href="#library">کتابخانه</a>
+          <a href="#mission">چرا این پروژه؟</a>
+          <a href="#roadmap">نقشه راه</a>
+        </nav>
+        <span class="badge" title="کد آزاد و قابل استفاده مجدد">MIT · متن‌باز</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="shell">
+          <p class="eyebrow">ابزار آزاد برای زبان فارسی</p>
+          <h1>متن فارسی را یکدست کن.</h1>
+          <p class="lede">
+            پارس‌نگار متن را یکسان‌سازی می‌کند: <code>ي</code> و <code>ك</code> عربی به <code>ی</code> و <code>ک</code>،
+            حذف اعراب و کشیده، ارقام فارسی یا لاتین، اصلاح نشانه‌گذاری و فاصله‌ها و
+            افزودن نیم‌فاصله. همه‌چیز داخل مرورگر خودت اجرا می‌شود؛
+            <strong>هیچ متنی به هیچ سروری فرستاده نمی‌شود.</strong>
+          </p>
+          <ul class="hero-points">
+            <li>بدون سرور و بدون ذخیره‌سازی متن</li>
+            <li>کتابخانه‌ای کوچک و بدون وابستگی</li>
+            <li>قابل استفاده مجدد در هر پروژه فارسی</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="tool" class="section">
+        <div class="shell">
+          <div class="section-head">
+            <h2>ابزار نرمال‌سازی</h2>
+            <p class="section-note">متن را در کادر ورودی بنویس یا بچسبان؛ خروجی هم‌زمان ساخته می‌شود.</p>
+          </div>
+
+          <div class="presets" role="group" aria-label="پیش‌تنظیم‌ها">
+            <span class="presets-label">پیش‌تنظیم:</span>
+            <button type="button" class="chip-btn" data-preset="light">پاک‌سازی سبک</button>
+            <button type="button" class="chip-btn" data-preset="full">نرمال‌سازی کامل</button>
+            <button type="button" class="chip-btn" data-preset="nlp">آماده‌سازی برای NLP</button>
+            <button type="button" class="chip-btn ghost" id="sample-btn">گذاشتن نمونه</button>
+          </div>
+
+          <div class="tool-grid">
+            <div class="field">
+              <div class="field-head">
+                <label for="input-text">متن ورودی</label>
+                <div class="field-actions">
+                  <button type="button" class="mini-btn" id="file-btn">بارگذاری فایل .txt</button>
+                  <input type="file" id="file-input" accept=".txt,.md,.csv,text/plain" hidden />
+                </div>
+              </div>
+              <textarea id="input-text" spellcheck="false" dir="rtl" rows="12" placeholder="اینجا بنویس…"></textarea>
+              <p class="field-meta" id="input-meta">۰ نویسه</p>
+            </div>
+            <div class="field">
+              <div class="field-head">
+                <label for="output-text">خروجی نرمال‌شده</label>
+                <div class="field-actions">
+                  <button type="button" class="mini-btn" id="copy-btn">کپی</button>
+                  <button type="button" class="mini-btn" id="download-btn">دانلود .txt</button>
+                </div>
+              </div>
+              <textarea id="output-text" spellcheck="false" dir="rtl" rows="12" readonly aria-live="polite"></textarea>
+              <p class="field-meta" id="output-meta">۰ نویسه</p>
+            </div>
+          </div>
+
+          <p class="status" id="status" role="status" aria-live="polite">آماده.</p>
+
+          <div class="options" aria-label="گزینه‌های نرمال‌سازی">
+            <fieldset>
+              <legend>پاک‌سازی نویسه‌ها</legend>
+              <label class="check"><input type="checkbox" data-option="arabic" checked /> یکسان‌سازی نویسه‌های عربی</label>
+              <label class="check"><input type="checkbox" data-option="diacritics" checked /> حذف اعراب</label>
+              <label class="check"><input type="checkbox" data-option="tatweel" checked /> حذف کشیده</label>
+              <label class="check"><input type="checkbox" data-option="punctuation" checked /> یکسان‌سازی نشانه‌گذاری</label>
+              <label class="check"><input type="checkbox" data-option="spacing" checked /> اصلاح فاصله‌ها</label>
+            </fieldset>
+
+            <fieldset>
+              <legend>نیم‌فاصله (ZWNJ)</legend>
+              <label class="check"><input type="checkbox" data-option="zwnjPrefixes" checked /> پیشوند «می» و «نمی»</label>
+              <label class="check">
+                <input type="checkbox" data-option="zwnjPlural" />
+                پسوند «ها» و «های»
+                <span class="exp" title="همیشه دقیق نیست">آزمایشی</span>
+              </label>
+              <label class="check">
+                <input type="checkbox" data-option="zwnjComparative" />
+                پسوند «تر» و «ترین»
+                <span class="exp" title="همیشه دقیق نیست">آزمایشی</span>
+              </label>
+            </fieldset>
+
+            <fieldset>
+              <legend>ارقام</legend>
+              <label class="check radio">
+                <input type="radio" name="digits" value="none" checked /> دست‌نخورده بماند
+              </label>
+              <label class="check radio">
+                <input type="radio" name="digits" value="fa" /> به فارسی (۱۲۳)
+              </label>
+              <label class="check radio">
+                <input type="radio" name="digits" value="en" /> به لاتین (123)
+              </label>
+            </fieldset>
+          </div>
+
+          <div class="panels">
+            <section class="panel" aria-labelledby="stats-title">
+              <h3 id="stats-title">آمار متن</h3>
+              <dl class="stats" id="stats"></dl>
+            </section>
+
+            <section class="panel" aria-labelledby="changes-title">
+              <h3 id="changes-title">اصلاحات انجام‌شده</h3>
+              <ul class="changes" id="changes"></ul>
+            </section>
+          </div>
+
+          <section class="panel diff-panel" aria-labelledby="diff-title">
+            <div class="field-head">
+              <h3 id="diff-title">نمایش تفاوت‌ها</h3>
+              <label class="check"><input type="checkbox" id="diff-toggle" /> نمایش تفاوت</label>
+            </div>
+            <p class="section-note">
+              بخش‌های تغییر‌یافته با رنگ مشخص می‌شوند:
+              <span class="mark-del">حذف‌شده</span> و <span class="mark-ins">افزوده‌شده</span>.
+            </p>
+            <div id="diff-output" class="diff-output" hidden></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="library" class="section alt">
+        <div class="shell">
+          <div class="section-head">
+            <h2>کتابخانه</h2>
+            <p class="section-note">
+              همین منطق، در یک فایل کوچک بدون وابستگی. می‌توانی آن را دانلود کنی و در پروژه خودت استفاده کنی،
+              با لایسنس MIT.
+            </p>
+          </div>
+          <div class="code-grid">
+            <div class="code-card">
+              <div class="code-head">
+                <span>استفاده در مرورگر</span>
+                <button type="button" class="mini-btn" data-copy-target="code-esm">کپی</button>
+              </div>
+              <pre id="code-esm"><code>import { normalize, computeStats } from "/persian-text.js";
+
+const { text, changes, total } = normalize(input, {
+  arabic: true,
+  diacritics: true,
+  digits: "fa",
+  zwnjPrefixes: true,
+});
+
+console.log(computeStats(text));</code></pre>
+            </div>
+            <div class="code-card">
+              <div class="code-head">
+                <span>خروجی نمونه</span>
+              </div>
+              <pre id="code-out"><code>ورودی : سلام دنيا ! من ميروم .
+خروجی : سلام دنیا! من می‌رود.</code></pre>
+            </div>
+          </div>
+          <div class="downloads">
+            <a class="download-btn" href="/persian-text.js" download>دانلود persian-text.js</a>
+            <a class="download-btn ghost" href="/LICENSE">متن لایسنس MIT</a>
+          </div>
+        </div>
+      </section>
+
+      <section id="mission" class="section">
+        <div class="shell">
+          <div class="section-head">
+            <h2>چرا این پروژه؟</h2>
+          </div>
+          <div class="mission-grid">
+            <article>
+              <h3>زبان فارسی ابزار آزاد کم دارد</h3>
+              <p>
+                بیشتر ابزارهای پردازش متن، برای فارسی ساخته نشده‌اند؛ نتیجه‌اش داده‌های ناهمگون است:
+                نویسه‌های عربی، اعراب، فاصله‌های نادرست و نیم‌فاصله‌های جاافتاده. این ناهم‌گونی،
+                کیفیت هر کاری که با متن فارسی انجام می‌شود را پایین می‌آورد.
+              </p>
+            </article>
+            <article>
+              <h3>نرمال‌سازی، اولین قدم هر کاری است</h3>
+              <p>
+                جست‌وجو، ترجمه ماشینی، گفتار‌به‌متن، مدل‌های زبانی، تحلیل داده و حتی مرتب‌سازی ساده،
+                همه به متنی یکدست نیاز دارند. یک کتابخانه کوچک و آزاد، می‌تواند پایه‌ی ده‌ها پروژه دیگر شود.
+              </p>
+            </article>
+            <article>
+              <h3>شفافیت و مالکیت کاربر</h3>
+              <p>
+                همه محاسبات در مرورگر انجام می‌شود؛ متن کاربر به هیچ سروری فرستاده نمی‌شود.
+                کد هم آزاد است تا هر کس آن را بخواند، اصلاح کند و در پروژه خودش به کار ببرد.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="roadmap" class="section alt">
+        <div class="shell">
+          <div class="section-head">
+            <h2>نقشه راه</h2>
+            <p class="section-note">آنچه در نسخه‌های بعدی به جعبه‌ابزار اضافه می‌شود.</p>
+          </div>
+          <ol class="roadmap">
+            <li><strong>نسخه ۱.۰ (اکنون):</strong> نرمال‌سازی پایه، ارقام، نشانه‌گذاری، نیم‌فاصله، آمار متن و نمایش تفاوت.</li>
+            <li><strong>نسخه ۱.۱:</strong> حالت خط‌فرمان و آزمایش‌های خودکار برای قواعد نرمال‌سازی.</li>
+            <li><strong>نسخه ۱.۲:</strong> پشتیبانی از نویسه‌های نادر و شکل‌های عربی اضافه، املا و شکل‌های شبه‌عربی.</li>
+            <li><strong>نسخه ۱.۳:</strong> مقایسه دو متن فارسی، یافتن واژه‌های نادرست و پیشنهاد اصلاح.</li>
+            <li><strong>نسخه ۲.۰:</strong> بسته‌های زبان‌های ایرانی (کردی، بلوچی، پشتو، آذری) بر پایه همین قواعد.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="about-en" class="section">
+        <div class="shell">
+          <div class="section-head">
+            <h2>About this project (English)</h2>
+            <p class="section-note">
+              A short summary for international reviewers, researchers and collaborators.
+            </p>
+          </div>
+          <div class="mission-grid">
+            <article>
+              <h3>The problem</h3>
+              <p>
+                Persian is usually called a <em>low-resource</em> language, but the more precise problem
+                is that it is <strong>normalization-poor</strong>: the same word is written several different
+                ways depending on keyboard, operating system and writer — Arabic letter forms
+                (<code>ي</code>, <code>ك</code>), optional diacritics, kashida, half-space (ZWNJ) errors and
+                mixed digit sets. Computers treat those variants as different strings, which breaks search,
+                deduplication, machine translation and language models.
+              </p>
+            </article>
+            <article>
+              <h3>The toolkit</h3>
+              <p>
+                ParsNegar is a dependency-free, MIT-licensed JavaScript library with a browser interface and a
+                command line tool. Everything runs locally: <strong>no text is uploaded to any server</strong>,
+                and the web app works offline. The rules are explicit, readable and individually switchable,
+                so users can see exactly what changed.
+              </p>
+            </article>
+            <article>
+              <h3>Who benefits</h3>
+              <p>
+                Persian-speaking developers, students, researchers, journalists and data teams, plus any
+                downstream Persian NLP or AI project that needs clean input. The same rule engine is designed to
+                extend to other Iranian languages that are even less served by existing tooling.
+              </p>
+            </article>
+          </div>
+          <p class="section-note">
+            License: MIT. Library: <code>/persian-text.js</code>. Tests: <code>node tests/normalize.test.mjs</code>.
+            Command line: <code>parsnigar note.txt --preset nlp</code>.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <p>پارس‌نگار — ابزار آزاد برای متن فارسی · نسخه <span id="version">۱.۰.۰</span></p>
+        <p>کد تحت لایسنس MIT، قابل استفاده در پروژه‌های شخصی و تجاری.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>

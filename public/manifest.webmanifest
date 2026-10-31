@@ -1,0 +1,25 @@
+{
+  "name": "پارس‌نگار — جعبه‌ابزار متن فارسی",
+  "short_name": "پارس‌نگار",
+  "description": "نرمال‌سازی متن فارسی در مرورگر: نویسه‌های عربی، اعراب، نیم‌فاصله، ارقام و آمار متن. بدون سرور و بدون وابستگی.",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0f1115",
+  "theme_color": "#0f1115",
+  "categories": [
+    "productivity",
+    "utilities",
+    "education"
+  ],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
